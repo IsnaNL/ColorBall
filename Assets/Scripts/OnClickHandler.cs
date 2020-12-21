@@ -5,7 +5,24 @@ using UnityEngine;
 public class OnClickHandler : MonoBehaviour
 {
     public GameManager gm;
+    public List<MeshButton> meshButtons;
+   
     // Start is called before the first frame update
+    public  void RecieveClicks(MeshButton b)
+    {
+        if (b == meshButtons[0])
+        {
+            RedClicked();
+        }
+        else if (b == meshButtons[1])
+        {
+            GreenClicked();
+        }
+        else if (b == meshButtons[2])
+        {
+            BlueClicked();
+        }
+    }
     public void RedClicked()
     {
         gm.isRed = true;

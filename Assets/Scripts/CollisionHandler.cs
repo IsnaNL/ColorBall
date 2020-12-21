@@ -5,12 +5,11 @@ using UnityEngine;
 public class CollisionHandler : MonoBehaviour
 {
     // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
+        if(collision.gameObject.layer != this.gameObject.layer)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }
