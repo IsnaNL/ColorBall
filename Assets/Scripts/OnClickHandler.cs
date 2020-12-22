@@ -6,6 +6,7 @@ public class OnClickHandler : MonoBehaviour
 {
     public GameManager gm;
     public List<MeshButton> meshButtons;
+    //public List<Material> LitMaterials;
    
     // Start is called before the first frame update
     public  void RecieveClicks(MeshButton b)

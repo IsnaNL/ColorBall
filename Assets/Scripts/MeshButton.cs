@@ -5,6 +5,9 @@ using UnityEngine;
 public class MeshButton : MonoBehaviour
 {
     private OnClickHandler clickHandler;
+    public Material Lit;
+    public Material Unlit;
+    private MeshRenderer MR;
    // private Rigidbody rb;
 
    // private Vector3 screenPoint;
@@ -19,6 +22,7 @@ public class MeshButton : MonoBehaviour
     private void Start()
     {
         clickHandler = GetComponentInParent<OnClickHandler>();
+        MR = GetComponent<MeshRenderer>();
        // rb = GetComponent<Rigidbody>();
     }
 
@@ -35,17 +39,22 @@ public class MeshButton : MonoBehaviour
         clickHandler.RecieveClicks(this);
         Debug.Log(gameObject.name);
     }
-
-  // void OnMouseDrag()
-   // {
-     //   curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-     //   curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-     //   transform.position = curPosition;
- //   }
-
-  //  private void OnMouseUp()
-   // {
-     //   rb.velocity = new Vector2(hor * speed, ver * speed);
+   // IEnumerator LightUp()
+  //  {
+        
    // }
+   void OnMouseDrag()
+    {
+        MR.material = Lit;
+        //curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+        //curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+        // transform.position = curPosition;
+    }
+    
+   private void OnMouseUp()
+   {
+        MR.material = Unlit;
+        //   rb.velocity = new Vector2(hor * speed, ver * speed);
+    }
 
 }
