@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public List<Material> matList;
     public GameObject Sphere;
-    public MeshRenderer sphereMr;
+    public MeshRenderer sphereMR;
     public int redLayer;
     public int GreenLayer;
     public int blueLayer;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public CurrentColor color;
     public void Start()
     {
-        sphereMr = Sphere.GetComponent<MeshRenderer>();
+        sphereMR = Sphere.GetComponent<MeshRenderer>();
     }
     // Start is called before the first frame update
 
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             isGreen = false;
             isBlue = false;
             Sphere.layer = redLayer;
-            sphereMr.material = matList[0];
+            sphereMR.material = matList[0];
         }
         if (isGreen)
         {
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             isRed = false;
             isBlue = false;
             Sphere.layer = GreenLayer;
-            sphereMr.material = matList[1];
+            sphereMR.material = matList[1];
         }
         if (isBlue)
         {
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
             isRed = false;
             isGreen = false;
             Sphere.layer = blueLayer;
-            sphereMr.material = matList[2];
+            sphereMR.material = matList[2];
 
         }
        /* switch (color)
