@@ -27,7 +27,10 @@ public class GameManager : MonoBehaviour
         sphereMR = Sphere.GetComponent<MeshRenderer>();
     }
     // Start is called before the first frame update
-
+    public void EndLevel()
+    {
+        Debug.Log("you have finished the level gj");
+    }
     public void SetColor()
     {
         if (isRed)
