@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public List<Material> matList;
     public GameObject Sphere;
-    public MeshRenderer sphereMR;
+    private MeshRenderer sphereMR;
+    public MeshRenderer nextColorIndicator;
+    public MeshRenderer previousColorIndicator;
     public int redLayer;
     public int GreenLayer;
     public int blueLayer;
@@ -40,6 +42,9 @@ public class GameManager : MonoBehaviour
             isBlue = false;
             Sphere.layer = redLayer;
             sphereMR.material = matList[0];
+            previousColorIndicator.material = matList[2];
+            nextColorIndicator.material = matList[1];
+
         }
         if (isGreen)
         {
@@ -48,6 +53,8 @@ public class GameManager : MonoBehaviour
             isBlue = false;
             Sphere.layer = GreenLayer;
             sphereMR.material = matList[1];
+            previousColorIndicator.material = matList[0];
+            nextColorIndicator.material = matList[2];
         }
         if (isBlue)
         {
@@ -56,6 +63,8 @@ public class GameManager : MonoBehaviour
             isGreen = false;
             Sphere.layer = blueLayer;
             sphereMR.material = matList[2];
+            previousColorIndicator.material = matList[1];
+            nextColorIndicator.material = matList[0];
 
         }
        /* switch (color)
