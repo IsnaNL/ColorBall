@@ -6,9 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public List<Material> matList;
     public GameObject Sphere;
-    private MeshRenderer sphereMR;
-    public MeshRenderer nextColorIndicator;
-    public MeshRenderer previousColorIndicator;
+    public List<MeshRenderer> mRList;
+   
     public int redLayer;
     public int GreenLayer;
     public int blueLayer;
@@ -26,7 +25,8 @@ public class GameManager : MonoBehaviour
     public CurrentColor color;
     public void Start()
     {
-        sphereMR = Sphere.GetComponent<MeshRenderer>();
+       
+        SetColor();
     }
     // Start is called before the first frame update
     public void EndLevel()
@@ -41,10 +41,11 @@ public class GameManager : MonoBehaviour
             isGreen = false;
             isBlue = false;
             Sphere.layer = redLayer;
-            sphereMR.material = matList[0];
-            previousColorIndicator.material = matList[2];
-            nextColorIndicator.material = matList[1];
-
+            foreach (MeshRenderer mr in mRList)
+            {
+                mr.material = matList[0];
+            }
+          
         }
         if (isGreen)
         {
@@ -52,9 +53,10 @@ public class GameManager : MonoBehaviour
             isRed = false;
             isBlue = false;
             Sphere.layer = GreenLayer;
-            sphereMR.material = matList[1];
-            previousColorIndicator.material = matList[0];
-            nextColorIndicator.material = matList[2];
+            foreach (MeshRenderer mr in mRList)
+            {
+                mr.material = matList[1];
+            }
         }
         if (isBlue)
         {
@@ -62,23 +64,23 @@ public class GameManager : MonoBehaviour
             isRed = false;
             isGreen = false;
             Sphere.layer = blueLayer;
-            sphereMR.material = matList[2];
-            previousColorIndicator.material = matList[1];
-            nextColorIndicator.material = matList[0];
-
+            foreach (MeshRenderer mr in mRList)
+            {
+                mr.material = matList[2];
+            }
         }
-       /* switch (color)
-        {
-            case CurrentColor.red:
-               
-                break;
-            case CurrentColor.green:
-               
-                break;
-            case CurrentColor.blue:
-                
-                break;
-        }*/
+        /* switch (color)
+         {
+             case CurrentColor.red:
+
+                 break;
+             case CurrentColor.green:
+
+                 break;
+             case CurrentColor.blue:
+
+                 break;
+         }*/
 
     }
 }
