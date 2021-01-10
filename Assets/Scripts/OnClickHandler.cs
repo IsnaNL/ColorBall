@@ -33,13 +33,13 @@ public class OnClickHandler : MonoBehaviour
     }*/
     public void Start()
     {
-       // stateCounter = 0;
-        //SwitchState();
+        // stateCounter = 0;
+        SwitchState();
     }
     private void Update()
     {
         GetInput();
-     
+
     }
     public void RedClicked()
     {
@@ -67,91 +67,87 @@ public class OnClickHandler : MonoBehaviour
     }
     void GetInput()
     {
-        Debug.Log(InputCircle.rotation.eulerAngles.z);
-        if (InputCircle.rotation.eulerAngles.z > 0 && InputCircle.rotation.eulerAngles.z < 120)
-        {
-            RedClicked();
-           // Debug.Log("red");
+        /* Debug.Log(InputCircle.rotation.eulerAngles.z);
+         if (InputCircle.rotation.eulerAngles.z > 0 && InputCircle.rotation.eulerAngles.z < 120)
+         {
+             RedClicked();
+            // Debug.Log("red");
 
-        }
-        else if (InputCircle.rotation.eulerAngles.z > 120 && InputCircle.rotation.eulerAngles.z < 240)
-        {
-            GreenClicked();
-          //  Debug.Log("green");
+         }
+         else if (InputCircle.rotation.eulerAngles.z > 120 && InputCircle.rotation.eulerAngles.z < 240)
+         {
+             GreenClicked();
+           //  Debug.Log("green");
 
-        }
-        else if (InputCircle.rotation.eulerAngles.z > 240 && InputCircle.rotation.eulerAngles.z < 360)
-        {
-            BlueClicked();
-          //  Debug.Log("blue");
+         }
+         else if (InputCircle.rotation.eulerAngles.z > 240 && InputCircle.rotation.eulerAngles.z < 360)
+         {
+             BlueClicked();
+           //  Debug.Log("blue");
 
-        }
+         }
+        */
         // Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
         // Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-        /* if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)){
-              if (Input.GetKeyDown(KeyCode.LeftArrow)){
-                  stateCounter++;
-                  if (stateCounter > 2)
-                  {
-                      stateCounter = 0;
-                  }
-                  SwitchState();
-              }
-              else if (Input.GetKeyDown(KeyCode.RightArrow))
-              {
-                  stateCounter--;
-                  if (stateCounter < 0)
-                  {
-                      stateCounter = 2;
-                  }
-                  SwitchState();
-              }
-          }*/
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                stateCounter++;
+                if (stateCounter > 2)
+                {
+                    stateCounter = 0;
+                }
+                SwitchState();
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                stateCounter--;
+                if (stateCounter < 0)
+                {
+                    stateCounter = 2;
+                }
+                SwitchState();
+            }
+        }
 
-        // if (Input.touchCount > 0)//TouchControls
-        // {
-        //  Vector2 Relpos;
-        // Touch touch =  Input.GetTouch(0);
-        //  if (Input.GetTouch(0).phase == TouchPhase.Began)
-        //{
-        //  Relpos = new Vector3(touch.position.x,touch.position.y,-20);
-        //   Vector3 Pos = Camera.main.ScreenToWorldPoint(Relpos);
-        //  Instantiate(ObjectToInstantiate, Pos, Quaternion.identity);
+        if (Input.touchCount > 0)//TouchControls
+        {
+            Touch touch = Input.GetTouch(0);
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
 
-        //    }
-        //   if(Input.GetTouch(0).phase == TouchPhase.Moved)
-        //  {
-
-        //  }
-        /* {
-        // Vector3 worldSpacePoint =  Camera.main.ScreenToWorldPoint();
-             if (touch.position.x >= (Screen.width / 2))
-             {
-                 stateCounter++;
-                 text.text = touch.position.x.ToString("F");
-                 if (stateCounter > 2)
-                 {
-                     stateCounter = 0;
-                 }
-                 SwitchState();
-             }
-             else if (touch.position.x < 530)
-             {
-                 stateCounter--;
-                 text.text = touch.position.x.ToString("F");
-                 if (stateCounter < 0)
-                 {
-                     stateCounter = 2;
-                 }
-                 SwitchState();
-             }
-         }
-       */
+                if (touch.position.x >= (Screen.width / 2))
+                {
+                    stateCounter++;
+                   // text.text = touch.position.x.ToString("F");
+                    if (stateCounter > 2)
+                    {
+                        stateCounter = 0;
+                    }
+                    SwitchState();
+                }
+                else
+                {
+                    stateCounter--;
+                  //  text.text = touch.position.x.ToString("F");
+                    if (stateCounter < 0)
+                    {
+                        stateCounter = 2;
+                    }
+                    SwitchState();
+                }
+            }
+          
 
 
+
+
+        }
+       
 
     }
-    /*void SwitchState()
+    void SwitchState()
     {
         Debug.Log(stateCounter);
         switch (stateCounter)
@@ -166,6 +162,5 @@ public class OnClickHandler : MonoBehaviour
                 BlueClicked();
                 break;
         }
-    }*/
-    
+    }
 }

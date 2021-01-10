@@ -8,6 +8,7 @@ public class WinConditionTrigger : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        gm.EndLevel();
+        gm.StartCoroutine(gm.EndLevel());
+        gm.LevelOver = true;
     }
 }
