@@ -13,6 +13,7 @@ public class CollisionHandler : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             gm.StartCoroutine(gm.EndLevel());
+            AudioManager.a_Instance.PlayRandomLoseClip();
         }
         
       

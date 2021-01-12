@@ -10,5 +10,6 @@ public class WinConditionTrigger : MonoBehaviour
     {
         gm.StartCoroutine(gm.EndLevel());
         gm.LevelOver = true;
+        AudioManager.a_Instance.PlayWinGameClip();
     }
 }

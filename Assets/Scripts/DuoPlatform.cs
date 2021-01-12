@@ -12,7 +12,7 @@ public class DuoPlatform : MonoBehaviour
     void Start()
     {
         dissapearX = -9.62f;
-        AppearX = 30.38f;
+        AppearX = 30.2f;
     }
 
     // Update is called once per frame

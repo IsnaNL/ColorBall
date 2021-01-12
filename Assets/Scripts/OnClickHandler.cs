@@ -9,7 +9,6 @@ public class OnClickHandler : MonoBehaviour
     public GameManager gm;
     public Transform pc;
     public TextMeshProUGUI text;
-    public RectTransform InputCircle;
     private int stateCounter;
     public GameObject ObjectToInstantiate;
     //  public List<MeshButton> meshButtons;

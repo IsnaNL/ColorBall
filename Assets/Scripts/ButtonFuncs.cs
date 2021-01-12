@@ -15,4 +15,15 @@ public class ButtonFuncs : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    public IEnumerator FirstLevelRoutine()
+    {
+
+        yield return new WaitForSeconds(0.8f);
+        SceneManager.LoadScene("Level1");
+    }
+    public void PlayFirstLevel()
+    {
+        StartCoroutine(FirstLevelRoutine());
+    }
+
 }
