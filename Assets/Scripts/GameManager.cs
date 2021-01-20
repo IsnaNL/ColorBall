@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public List<Material> matList;
     public MeshRenderer player;
-    public MeshRenderer RightColorIndicator;
-    public MeshRenderer LeftColorIndicator;
+    public MeshRenderer[] RightColorIndicators;
+    public MeshRenderer[] LeftColorIndicators;
     public GameObject PauseMenuHolder;
     public bool LevelOver;
     public int lastColor;
@@ -51,10 +51,14 @@ public class GameManager : MonoBehaviour
                         tempMaterials[m] = matList[0];
 
                     }
+                for (int i = 0; i < RightColorIndicators.Length; i++)
+                {
+                    RightColorIndicators[i].material = matList[2];
+                    LeftColorIndicators[i].material = matList[1];
+                }
                     player.materials = tempMaterials;
                     player.gameObject.layer = redLayer;
-                    RightColorIndicator.material = matList[2];
-                    LeftColorIndicator.material = matList[1];
+                 
                     color = CurrentColor.red;
                 break;
             case 1:
@@ -63,10 +67,14 @@ public class GameManager : MonoBehaviour
                         tempMaterials[m] = matList[2];
 
                     }
-                    player.materials = tempMaterials;
+                for (int i = 0; i < RightColorIndicators.Length; i++)
+                {
+                    RightColorIndicators[i].material = matList[0];
+                    LeftColorIndicators[i].material = matList[1];
+                }
+                player.materials = tempMaterials;
                     player.gameObject.layer = blueLayer;
-                    RightColorIndicator.material = matList[0];
-                    LeftColorIndicator.material = matList[1];
+                   
                     color = CurrentColor.blue;
 
                 break;
@@ -77,10 +85,14 @@ public class GameManager : MonoBehaviour
                         tempMaterials[m] = matList[0];
 
                     }
-                    player.materials = tempMaterials;
+                for (int i = 0; i < RightColorIndicators.Length; i++)
+                {
+                    RightColorIndicators[i].material = matList[1];
+                    LeftColorIndicators[i].material = matList[2];
+                }
+                player.materials = tempMaterials;
                     player.gameObject.layer = redLayer;
-                    RightColorIndicator.material = matList[1];
-                    LeftColorIndicator.material = matList[2];                      
+                           
                     color = CurrentColor.red;
                 break;
             case 3:
@@ -89,10 +101,14 @@ public class GameManager : MonoBehaviour
                     tempMaterials[m] = matList[1];
 
                 }
+                for (int i = 0; i < RightColorIndicators.Length; i++)
+                {
+                    RightColorIndicators[i].material = matList[0];
+                    LeftColorIndicators[i].material = matList[2];
+                }
                 player.materials = tempMaterials;
                 player.gameObject.layer = GreenLayer;
-                RightColorIndicator.material = matList[0];
-                LeftColorIndicator.material = matList[2];
+               
                 color = CurrentColor.green;
                 break;
             case 4:
@@ -101,10 +117,14 @@ public class GameManager : MonoBehaviour
                     tempMaterials[m] = matList[2];
 
                 }
+                for (int i = 0; i < RightColorIndicators.Length; i++)
+                {
+                    RightColorIndicators[i].material = matList[1];
+                    LeftColorIndicators[i].material = matList[0];
+                }
                 player.materials = tempMaterials;
                 player.gameObject.layer = blueLayer;
-                RightColorIndicator.material = matList[1];
-                LeftColorIndicator.material = matList[0];
+              
                 color = CurrentColor.blue;
                 break;
               
@@ -114,10 +134,14 @@ public class GameManager : MonoBehaviour
                     tempMaterials[m] = matList[1];
 
                 }
+                for (int i = 0; i < RightColorIndicators.Length; i++)
+                {
+                    RightColorIndicators[i].material = matList[2];
+                    LeftColorIndicators[i].material = matList[0];
+                }
                 player.materials = tempMaterials;
                 player.gameObject.layer = GreenLayer;
-                RightColorIndicator.material = matList[2];
-                LeftColorIndicator.material = matList[0];
+                
                 color = CurrentColor.green;
                 break;
         }
