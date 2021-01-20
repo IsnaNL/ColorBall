@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFuncs : MonoBehaviour
 {
-    // Start is called before the first frame update
+   
     public void RestartCurLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -17,9 +17,13 @@ public class ButtonFuncs : MonoBehaviour
     }
     public IEnumerator FirstLevelRoutine()
     {
-
-        yield return new WaitForSeconds(0.8f);
+        AudioManager.a_Instance.PlaythisIsNotADream();
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Level1");
+    }
+    public void MainMenu()
+    { 
+        SceneManager.LoadScene(0);
     }
     public void PlayFirstLevel()
     {

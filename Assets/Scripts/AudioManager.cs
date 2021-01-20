@@ -9,18 +9,20 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> loseClips;
     public AudioClip startGameClip;
     public AudioClip WinGameClip;
+    public AudioClip thisIsNotADreamClip;
+    public AudioClip changeColorClip;
     public AudioSource audioSource;
     public void Start()
     {
         a_Instance = this;
     }
-    // Start is called before the first frame update
+  
     public void PlayRandomLoseClip()
     {
         audioSource.volume = 0.3f;
         audioSource.PlayOneShot(loseClips[Random.Range(0, loseClips.Count)]);
     }
-    public void PlayRandomPassObsClip()
+    public void PlayPassObsClip()
     {
 
         audioSource.volume = 0.1f;
@@ -31,6 +33,9 @@ public class AudioManager : MonoBehaviour
         audioSource.volume = 0.3f;
 
         audioSource.PlayOneShot(startGameClip);
+       
+
+
     }
     public void PlayWinGameClip()
     {
@@ -38,5 +43,18 @@ public class AudioManager : MonoBehaviour
 
         audioSource.PlayOneShot(WinGameClip);
 
+    }
+    public void PlaythisIsNotADream()
+    {
+        audioSource.volume = 0.5f;
+
+        audioSource.PlayOneShot(thisIsNotADreamClip);
+
+    }
+    public void PlayChangeColor()
+    {
+        audioSource.volume = 0.08f;
+
+        audioSource.PlayOneShot(changeColorClip);
     }
 }

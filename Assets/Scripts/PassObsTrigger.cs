@@ -6,7 +6,7 @@ public class PassObsTrigger : MonoBehaviour
 {
     public int[] layers;
     public ParticleSystem[] passObsParticals;
-    // Start is called before the first frame update
+ 
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.layer == layers[0])
@@ -25,7 +25,7 @@ public class PassObsTrigger : MonoBehaviour
             passObsParticals[2].transform.position = transform.position;
             passObsParticals[2].Play();
         }
-        AudioManager.a_Instance.PlayRandomPassObsClip();
+        AudioManager.a_Instance.PlayPassObsClip();
 
     }
 }

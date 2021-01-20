@@ -7,7 +7,7 @@ public class PlayParticalsOnButtonClick : MonoBehaviour
 {
     public Button btn;
     public ParticleSystem[] particals;
-    // Start is called before the first frame update
+   
     void Start()
     {
         btn.onClick.AddListener(TaskOnClick);
@@ -16,12 +16,10 @@ public class PlayParticalsOnButtonClick : MonoBehaviour
     {
         foreach (ParticleSystem p in particals)
         {
+            p.gameObject.SetActive(true);
             p.Play();
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
+   
 }

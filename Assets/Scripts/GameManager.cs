@@ -6,18 +6,14 @@ public class GameManager : MonoBehaviour
 {
     public List<Material> matList;
     public MeshRenderer player;
-    public MeshRenderer NextColorIndicator;
-    public MeshRenderer PrevColorIndicator;
+    public MeshRenderer RightColorIndicator;
+    public MeshRenderer LeftColorIndicator;
     public GameObject PauseMenuHolder;
     public bool LevelOver;
-    // public List<MeshRenderer> mRList;
-
+    public int lastColor;
     public int redLayer;
     public int GreenLayer;
     public int blueLayer;
-    public bool isRed;
-    public bool isGreen;
-    public bool isBlue;
     public float waitTimeTillEnd;
 
 
@@ -33,7 +29,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         LevelOver = false;
-        SetColor();
     }
     // Start is called before the first frame update
     public IEnumerator EndLevel()
@@ -43,65 +38,91 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(waitTimeTillEnd);
         PauseMenuHolder.SetActive(true);
     }
-    public void SetColor()
+    public void SetColor(int state)
     {
-        if (isRed)
+        Material[] tempMaterials = new Material[7];
+        switch (state)
         {
-            color = CurrentColor.red;
-            isGreen = false;
-            isBlue = false;
-            player.gameObject.layer = redLayer;
-            player.material = matList[0];
-            NextColorIndicator.material = matList[1];
-            PrevColorIndicator.material = matList[2];
-            /* foreach (MeshRenderer mr in mRList)
-             {
-                 //mr.material = matList[0];
-             }
-           */
+          
+            case 0 :                              
+                 
+                    for (int m = 0; m < tempMaterials.Length; m++)
+                    {
+                        tempMaterials[m] = matList[0];
+
+                    }
+                    player.materials = tempMaterials;
+                    player.gameObject.layer = redLayer;
+                    RightColorIndicator.material = matList[2];
+                    LeftColorIndicator.material = matList[1];
+                    color = CurrentColor.red;
+                break;
+            case 1:
+                    for (int m = 0; m < tempMaterials.Length; m++)
+                    {
+                        tempMaterials[m] = matList[2];
+
+                    }
+                    player.materials = tempMaterials;
+                    player.gameObject.layer = blueLayer;
+                    RightColorIndicator.material = matList[0];
+                    LeftColorIndicator.material = matList[1];
+                    color = CurrentColor.blue;
+
+                break;
+            case 2:
+                
+                    for (int m = 0; m < tempMaterials.Length; m++)
+                    {
+                        tempMaterials[m] = matList[0];
+
+                    }
+                    player.materials = tempMaterials;
+                    player.gameObject.layer = redLayer;
+                    RightColorIndicator.material = matList[1];
+                    LeftColorIndicator.material = matList[2];                      
+                    color = CurrentColor.red;
+                break;
+            case 3:
+                for (int m = 0; m < tempMaterials.Length; m++)
+                {
+                    tempMaterials[m] = matList[1];
+
+                }
+                player.materials = tempMaterials;
+                player.gameObject.layer = GreenLayer;
+                RightColorIndicator.material = matList[0];
+                LeftColorIndicator.material = matList[2];
+                color = CurrentColor.green;
+                break;
+            case 4:
+                for (int m = 0; m < tempMaterials.Length; m++)
+                {
+                    tempMaterials[m] = matList[2];
+
+                }
+                player.materials = tempMaterials;
+                player.gameObject.layer = blueLayer;
+                RightColorIndicator.material = matList[1];
+                LeftColorIndicator.material = matList[0];
+                color = CurrentColor.blue;
+                break;
+              
+            case 5:
+                for (int m = 0; m < tempMaterials.Length; m++)
+                {
+                    tempMaterials[m] = matList[1];
+
+                }
+                player.materials = tempMaterials;
+                player.gameObject.layer = GreenLayer;
+                RightColorIndicator.material = matList[2];
+                LeftColorIndicator.material = matList[0];
+                color = CurrentColor.green;
+                break;
         }
-        if (isGreen)
-        {
-            color = CurrentColor.green;
-            isRed = false;
-            isBlue = false;
-            player.gameObject.layer = GreenLayer;
-            /* foreach (MeshRenderer mr in mRList)
-             {
-                 //mr.material = matList[1];
-             }
-            */
-            player.material = matList[1];
-            NextColorIndicator.material = matList[2];
-            PrevColorIndicator.material = matList[0];
-        }
-        if (isBlue)
-         {
-             color = CurrentColor.blue;
-             isRed = false;
-             isGreen = false;
-             player.gameObject.layer = blueLayer;
-            /*  foreach (MeshRenderer mr in mRList)
-              {
-                 // mr.material = matList[2];
-              }
-             */
-            player.material = matList[2];
-            NextColorIndicator.material = matList[0];
-            PrevColorIndicator.material = matList[1];
-        }
-        /* switch (color)
-         {
-             case CurrentColor.red:
-
-                 break;
-             case CurrentColor.green:
-
-                 break;
-             case CurrentColor.blue:
-
-                 break;
-         }*/
-
+       
+       
+       
     }
     }

@@ -11,10 +11,10 @@ public class GetColorParticale : MonoBehaviour
    
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
 
-        if (gm.isRed)
+        if (gm.)
         {
             pSArray[0].SetActive(true);
             pSArray[1].SetActive(false);
@@ -35,5 +35,5 @@ public class GetColorParticale : MonoBehaviour
             pSArray[2].SetActive(true);
         }
 
-    }
+    }*/
 }

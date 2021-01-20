@@ -9,157 +9,189 @@ public class OnClickHandler : MonoBehaviour
     public GameManager gm;
     public Transform pc;
     public TextMeshProUGUI text;
-    private int stateCounter;
+    private int stateCounter = 2;
     public GameObject ObjectToInstantiate;
-    //  public List<MeshButton> meshButtons;
-    //public List<Material> LitMaterials;
+    private bool isRightClicked;
+    private enum State{
+        greenRedBlue,
+        greenBlueRed,
+        blueRedGreen,
+        blueGreenRed,
+        redBlueGreen,
+        redGreenBlue,
+        }
+    private State state;
 
-    // Start is called before the first frame update
-    /*public  void RecieveClicks(MeshButton b)
+    private void Start()
     {
-        if (b == meshButtons[0])
-        {
-            RedClicked();
-        }
-        else if (b == meshButtons[1])
-        {
-            GreenClicked();
-        }
-        else if (b == meshButtons[2])
-        {
-            BlueClicked();
-        }
-    }*/
-    public void Start()
-    {
-        // stateCounter = 0;
         SwitchState();
     }
+
     private void Update()
     {
         GetInput();
 
     }
-    public void RedClicked()
+  
+    void greenRedBlueState()
     {
-        gm.isRed = true;
-        gm.isGreen = false;
-        gm.isBlue = false;
-        gm.SetColor();
+        if (isRightClicked)
+        {
+            gm.SetColor(1);
+            state = State.greenBlueRed;
+        }
+        else
+        {
+            gm.SetColor(5);
+            state = State.redGreenBlue;
+        }
+    }
+    void greenBlueRedState()
+    {
+        if (isRightClicked)
+        {
+            gm.SetColor(0);
+            state = State.greenRedBlue;
 
+        }
+        else
+        {
+            gm.SetColor(3);
+            state = State.blueGreenRed;
+        }
+    }
+    void blueRedGreenState()
+    {
+        if (isRightClicked)
+        {
+            gm.SetColor(3);
+            state = State.blueGreenRed;
+        }
+        else
+        {
+            gm.SetColor(4);
+            state = State.redBlueGreen;
+        }
+    }
+    void blueGreenRedState()
+    {
+        if (isRightClicked)
+        {
+            gm.SetColor(2);
+            state = State.blueRedGreen;
+
+        }
+        else
+        {
+            gm.SetColor(1);
+            state = State.greenBlueRed;
+
+        }
 
     }
-    public void GreenClicked()
+    void redBlueGreenState()
     {
-        gm.isGreen = true;
-        gm.isRed = false;
-        gm.isBlue = false;
-        gm.SetColor();
+        if (isRightClicked)
+        {
+            gm.SetColor(5);
+            state = State.redGreenBlue;
+        }
+        else
+        {
+            gm.SetColor(2);
+            state = State.blueRedGreen;
+        }
 
     }
-    public void BlueClicked()
+    void redGreenBlueState()
     {
-        gm.isBlue = true;
-        gm.isGreen = false;
-        gm.isRed = false;
-        gm.SetColor();
+        if (isRightClicked)
+        {
+            gm.SetColor(4);
+            state = State.redBlueGreen;
+        }
+        else
+        {
+            gm.SetColor(0);
+            state = State.greenRedBlue;
+
+        }
+
     }
     void GetInput()
     {
-        /* Debug.Log(InputCircle.rotation.eulerAngles.z);
-         if (InputCircle.rotation.eulerAngles.z > 0 && InputCircle.rotation.eulerAngles.z < 120)
-         {
-             RedClicked();
-            // Debug.Log("red");
-
-         }
-         else if (InputCircle.rotation.eulerAngles.z > 120 && InputCircle.rotation.eulerAngles.z < 240)
-         {
-             GreenClicked();
-           //  Debug.Log("green");
-
-         }
-         else if (InputCircle.rotation.eulerAngles.z > 240 && InputCircle.rotation.eulerAngles.z < 360)
-         {
-             BlueClicked();
-           //  Debug.Log("blue");
-
-         }
-        */
-        // Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-        // Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+       
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
+    
+            AudioManager.a_Instance.PlayChangeColor();
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                stateCounter++;
-                if (stateCounter > 2)
-                {
-                    stateCounter = 0;
-                }
+                isRightClicked = true;
                 SwitchState();
+
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                stateCounter--;
-                if (stateCounter < 0)
-                {
-                    stateCounter = 2;
-                }
+
+                isRightClicked = false;
                 SwitchState();
             }
         }
 
         if (Input.touchCount > 0)//TouchControls
         {
+          
             Touch touch = Input.GetTouch(0);
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-
+                int lastState = stateCounter;
+                AudioManager.a_Instance.PlayChangeColor();
                 if (touch.position.x >= (Screen.width / 2))
                 {
-                    stateCounter++;
-                   // text.text = touch.position.x.ToString("F");
-                    if (stateCounter > 2)
-                    {
-                        stateCounter = 0;
-                    }
+
+                    isRightClicked = true;
                     SwitchState();
                 }
                 else
                 {
-                    stateCounter--;
-                  //  text.text = touch.position.x.ToString("F");
-                    if (stateCounter < 0)
-                    {
-                        stateCounter = 2;
-                    }
+
+                    isRightClicked = false;
                     SwitchState();
+
                 }
             }
-          
-
-
-
-
+   
         }
        
 
     }
     void SwitchState()
     {
+       
+        Debug.Log(gm.lastColor);
         Debug.Log(stateCounter);
-        switch (stateCounter)
+        switch (state)
         {
-            case 0:
-                RedClicked();
+            case State.greenRedBlue:
+                greenRedBlueState();
                 break;
-            case 1:
-                GreenClicked();
+            case State.greenBlueRed:
+                greenBlueRedState();
                 break;
-            case 2:
-                BlueClicked();
+            case State.blueRedGreen:
+                blueRedGreenState();
                 break;
+            case State.blueGreenRed:
+                blueGreenRedState();
+                break;
+            case State.redBlueGreen:
+                redBlueGreenState();
+                break;
+            case State.redGreenBlue:
+                redGreenBlueState();
+                break;
+
         }
     }
 }
