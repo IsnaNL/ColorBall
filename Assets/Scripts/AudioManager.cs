@@ -11,26 +11,31 @@ public class AudioManager : MonoBehaviour
     public AudioClip WinGameClip;
     public AudioClip thisIsNotADreamClip;
     public AudioClip changeColorClip;
+    public AudioClip MainMenuMusic;
     public AudioSource audioSource;
     public void Start()
     {
         a_Instance = this;
     }
-  
+    public void MainMenuAmbience()
+    {
+        audioSource.volume = Settings.isSoundOn ? 0.5f : 0;
+        audioSource.Play();
+    }
     public void PlayRandomLoseClip()
     {
-        audioSource.volume = 0.3f;
+        audioSource.volume =  Settings.isSoundOn ? 0.3f : 0;
         audioSource.PlayOneShot(loseClips[Random.Range(0, loseClips.Count)]);
     }
     public void PlayPassObsClip()
     {
 
-        audioSource.volume = 0.1f;
+       audioSource.volume = Settings.isSoundOn ? 0.1f : 0;
         audioSource.PlayOneShot(passObsClips);
     }
     public void PlayStartGameClip()
     {
-        audioSource.volume = 0.3f;
+        audioSource.volume = Settings.isSoundOn ? 0.3f : 0;
 
         audioSource.PlayOneShot(startGameClip);
        
@@ -39,22 +44,23 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayWinGameClip()
     {
-        audioSource.volume = 0.3f;
-
+        audioSource.volume = Settings.isSoundOn ? 0.3f : 0;
         audioSource.PlayOneShot(WinGameClip);
 
     }
     public void PlaythisIsNotADream()
     {
-        audioSource.volume = 0.5f;
-
+        audioSource.volume = Settings.isSoundOn ? 0.4f : 0;
         audioSource.PlayOneShot(thisIsNotADreamClip);
 
     }
     public void PlayChangeColor()
     {
-        audioSource.volume = 0.08f;
-
+        audioSource.volume = Settings.isSoundOn ? 0.07f : 0;
         audioSource.PlayOneShot(changeColorClip);
+    }
+    public void SetVolumeZero()
+    {
+        audioSource.volume = 0;
     }
 }

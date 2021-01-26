@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour
     public MeshRenderer player;
     public MeshRenderer[] RightColorIndicators;
     public MeshRenderer[] LeftColorIndicators;
+    public ParticleSystem[] coloredParticals;
     public GameObject PauseMenuHolder;
+    public GameObject VictoryText;
+    public GameObject LostText;
     public bool LevelOver;
     public int lastColor;
     public int redLayer;
@@ -30,13 +33,45 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         LevelOver = false;
     }
-    // Start is called before the first frame update
-    public IEnumerator EndLevel()
+    public IEnumerator EndLevelWon()
     {
         Debug.Log("you have finished the level gj");
-        Time.timeScale = 0.4f;
+        VictoryText.SetActive(true);
         yield return new WaitForSeconds(waitTimeTillEnd);
         PauseMenuHolder.SetActive(true);
+    }
+    public IEnumerator EndLevelLost()
+    {
+        Debug.Log("you have Lost");
+        switch (color)
+        {
+            case CurrentColor.red:
+
+                coloredParticals[0].transform.position = player.transform.position;
+                coloredParticals[0].gameObject.SetActive(true);
+                coloredParticals[0].Play();
+
+                break;
+
+            case CurrentColor.blue:
+                coloredParticals[1].transform.position = player.transform.position;
+                coloredParticals[1].gameObject.SetActive(true);
+                coloredParticals[1].Play();
+                break;
+
+            case CurrentColor.green:
+                coloredParticals[2].transform.position = player.transform.position;
+                coloredParticals[2].gameObject.SetActive(true);
+                coloredParticals[2].Play();
+                break;
+        }
+        yield return new WaitForSeconds(waitTimeTillEnd);
+        Time.timeScale = 0.4f;
+        PauseMenuHolder.SetActive(true);
+        LostText.SetActive(true);
+      
+       
+
     }
     public void SetColor(int state)
     {

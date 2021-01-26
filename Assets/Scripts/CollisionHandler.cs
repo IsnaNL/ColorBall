@@ -12,7 +12,7 @@ public class CollisionHandler : MonoBehaviour
         if (collision.gameObject.layer != this.gameObject.layer)
         {
             this.gameObject.SetActive(false);
-            gm.StartCoroutine(gm.EndLevel());
+            gm.StartCoroutine(gm.EndLevelLost());
             AudioManager.a_Instance.PlayRandomLoseClip();
         }
         
